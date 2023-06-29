@@ -13,7 +13,7 @@ const onUploadFile = (payload: Event): void => {
 }
 const submit = (e: Event) => {
   e.preventDefault()
-  axios.postForm(`http://localhost:8000/api/stars`, {
+  axios.postForm(`${import.meta.env.VITE_API_ENDPOINT}/stars`, {
     image: star.file,
     firstName: star.firstName,
     lastName: star.lastName,

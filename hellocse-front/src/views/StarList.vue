@@ -6,7 +6,7 @@ import { onMounted, ref } from 'vue'
 const stars = ref<Star[]>([])
 const getStars = () => {
   axios
-    .get<Star[]>('http://localhost:8000/api/stars')
+    .get<Star[]>(`${import.meta.env.VITE_API_ENDPOINT}/stars`)
     .then((res) => (stars.value = res.data.data))
     .catch((error) => console.log(error.message))
 }

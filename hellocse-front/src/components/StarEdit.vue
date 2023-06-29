@@ -8,7 +8,7 @@ const id = useRoute().params.id
 const star = ref<Star | undefined>()
 const getStars = (id: string | string[]) => {
     axios
-        .get<Star>(`http://localhost:8000/api/stars/` + id)
+        .get<Star>(`${import.meta.env.VITE_API_ENDPOINT}/stars/${id}`)
         .then((res) => (star.value = res.data.data))
         .catch((error) => console.log(error.message))
 }
@@ -25,7 +25,7 @@ const onUploadFile = (payload: Event): void => {
 
 const submit = (e: Event) => {
     e.preventDefault()
-    axios.postForm(`http://localhost:8000/api/stars/${id}?_method=PATCH`, {
+    axios.postForm(`${import.meta.env.VITE_API_ENDPOINT}/stars/${id}?_method=PATCH`, {
         image: image,
         firstName: star.value?.firstName,
         lastName: star.value?.lastName,
@@ -37,13 +37,15 @@ const submit = (e: Event) => {
             }
         }
     )
+  this.$forceUpdate();
 }
 
 const deleteStar = (e: Event) => {
     e.preventDefault()
     if (confirm('This will delete the star, are you sure?')) {
-        axios.delete(`http://localhost:8000/api/stars/${id}`)
+        axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/stars/${id}`)
     }
+    this.$forceUpdate();
 }
 </script>
 <template>
