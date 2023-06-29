@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import axios from 'axios'
+import router from "@/router";
 
 let star = {
   firstName: '',

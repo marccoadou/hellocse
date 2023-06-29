@@ -2,7 +2,6 @@
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-
 const id = useRoute().params.id
 
 const star = ref<Star | undefined>()
@@ -37,7 +36,7 @@ const submit = (e: Event) => {
             }
         }
     )
-  this.$forceUpdate();
+
 }
 
 const deleteStar = (e: Event) => {
@@ -45,7 +44,7 @@ const deleteStar = (e: Event) => {
     if (confirm('This will delete the star, are you sure?')) {
         axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/stars/${id}`)
     }
-    this.$forceUpdate();
+  router.push('/edit')
 }
 </script>
 <template>
